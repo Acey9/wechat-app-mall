@@ -4,7 +4,7 @@ App({
     var that = this;
     //  获取商城名称
     wx.request({
-      url: 'https://api.it120.cc/'+ that.globalData.subDomain +'/config/get-value',
+      url: that.globalData.api + that.globalData.subDomain +'/config/get-value',
       data: {
         key: 'mallName'
       },
@@ -15,7 +15,7 @@ App({
       }
     })
     wx.request({
-      url: 'https://api.it120.cc/' + that.globalData.subDomain + '/score/send/rule',
+      url: that.globalData.api + that.globalData.subDomain + '/score/send/rule',
       data: {
         code: 'goodReputation'
       },
@@ -26,7 +26,7 @@ App({
       }
     })
     wx.request({
-      url: 'https://api.it120.cc/' + that.globalData.subDomain + '/config/get-value',
+      url: that.globalData.api + that.globalData.subDomain + '/config/get-value',
       data: {
         key: 'recharge_amount_min'
       },
@@ -43,7 +43,7 @@ App({
     var token = that.globalData.token;
     if (token) {
       wx.request({
-        url: 'https://api.it120.cc/' + that.globalData.subDomain + '/user/check-token',
+        url: that.globalData.api + that.globalData.subDomain + '/user/check-token',
         data: {
           token: token
         },
@@ -59,7 +59,7 @@ App({
     wx.login({
       success: function (res) {
         wx.request({
-          url: 'https://api.it120.cc/'+ that.globalData.subDomain +'/user/wxapp/login',
+          url: that.globalData.api+ that.globalData.subDomain +'/user/wxapp/login',
           data: {
             code: res.code
           },
@@ -98,7 +98,7 @@ App({
             var encryptedData = res.encryptedData;
             // 下面开始调用注册接口
             wx.request({
-              url: 'https://api.it120.cc/' + that.globalData.subDomain +'/user/wxapp/register/complex',
+              url: that.globalData.api + that.globalData.subDomain +'/user/wxapp/register/complex',
               data: {code:code,encryptedData:encryptedData,iv:iv}, // 设置请求的 参数
               success: (res) =>{
                 wx.hideLoading();
@@ -113,7 +113,7 @@ App({
   sendTempleMsg: function (orderId, trigger, template_id, form_id, page, postJsonString){
     var that = this;
     wx.request({
-      url: 'https://api.it120.cc/' + that.globalData.subDomain + '/template-msg/put',
+      url: that.globalData.api + that.globalData.subDomain + '/template-msg/put',
       method:'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -139,7 +139,7 @@ App({
   sendTempleMsgImmediately: function (template_id, form_id, page, postJsonString) {
     var that = this;
     wx.request({
-      url: 'https://api.it120.cc/' + that.globalData.subDomain + '/template-msg/put',
+      url: that.globalData.api + that.globalData.subDomain + '/template-msg/put',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -181,7 +181,8 @@ App({
   },
   globalData:{
     userInfo:null,
-    subDomain: "tz", // 如果你的域名是： https://api.it120.cc/abcd 那么这里只要填写 abcd
+    api:"https://www.acey.me/api/",
+    subDomain: "naturaleye", // 如果你的域名是： https://api.it120.cc/abcd 那么这里只要填写 abcd
     version: "1.9.SNAPSHOT",
     shareProfile: '百款精品商品，总有一款适合您' // 首页转发的时候话术
   }

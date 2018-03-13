@@ -76,7 +76,7 @@ Page({
     })
     */
     wx.request({
-      url: 'https://api.it120.cc/' + app.globalData.subDomain + '/banner/list',
+      url: app.globalData.api + app.globalData.subDomain + '/banner/list',
       data: {
         key: 'mallName'
       },
@@ -95,7 +95,7 @@ Page({
       }
     })
     wx.request({
-      url: 'https://api.it120.cc/'+ app.globalData.subDomain +'/shop/goods/category/all',
+      url: app.globalData.api+ app.globalData.subDomain +'/shop/goods/category/all',
       success: function(res) {
         var categories = [{id:0, name:"全部"}];
         if (res.data.code == 0) {
@@ -120,7 +120,7 @@ Page({
     console.log(categoryId)
     var that = this;
     wx.request({
-      url: 'https://api.it120.cc/'+ app.globalData.subDomain +'/shop/goods/list',
+      url: app.globalData.api+ app.globalData.subDomain +'/shop/goods/list',
       data: {
         categoryId: categoryId,
         nameLike: that.data.searchInput
@@ -149,7 +149,7 @@ Page({
   getCoupons: function () {
     var that = this;
     wx.request({
-      url: 'https://api.it120.cc/' + app.globalData.subDomain + '/discounts/coupons',
+      url: app.globalData.api + app.globalData.subDomain + '/discounts/coupons',
       data: {
         type: ''
       },
@@ -166,7 +166,7 @@ Page({
   gitCoupon : function (e) {
     var that = this;
     wx.request({
-      url: 'https://api.it120.cc/' + app.globalData.subDomain + '/discounts/fetch',
+      url: app.globalData.api + app.globalData.subDomain + '/discounts/fetch',
       data: {
         id: e.currentTarget.dataset.id,
         token: app.globalData.token
@@ -235,7 +235,7 @@ Page({
   getNotice: function () {
     var that = this;
     wx.request({
-      url: 'https://api.it120.cc/' + app.globalData.subDomain + '/notice/list',
+      url: app.globalData.api + app.globalData.subDomain + '/notice/list',
       data: { pageSize :5},
       success: function (res) {
         if (res.data.code == 0) {
